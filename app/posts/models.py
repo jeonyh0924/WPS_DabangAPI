@@ -9,7 +9,6 @@ class PostRoom(models.Model):
         ('Division', '개별'),
         ('Area', '지역'),
     )
-    title = models.CharField(max_length=20, verbose_name='제목', null=True, )
     description = models.TextField(max_length=1000, verbose_name='설명', )
     address = models.OneToOneField(
         'PostAddress',
@@ -19,7 +18,6 @@ class PostRoom(models.Model):
         'SalesForm',
         on_delete=models.CASCADE,
     )
-
     floor = models.CharField(null=True, verbose_name='층 수', max_length=5)
     totalFloor = models.CharField(null=True, verbose_name='건물 층 수', max_length=5)
     area = models.CharField(verbose_name='전용 면적', max_length=10)
@@ -46,6 +44,7 @@ class PostRoom(models.Model):
     depositLoan = models.BooleanField('전세 자금 대출', )
     securitySafety = models.ManyToManyField(
         'SecuritySafetyFacilities',
+        through='Security',
     )
 
     @staticmethod
@@ -274,7 +273,6 @@ class PostRoom(models.Model):
                     deposit=variable.salesForm_deposit,
                 )
 
-
             # 관리비 인스턴스 생성 MTM
             management_list = []
             for obj in management:
@@ -299,7 +297,7 @@ class PostRoom(models.Model):
             # 옵션 시설 인스턴스 생성 MTM
             option_list = []
             for obj in option:
-                instance = OptionItem.objects.create(
+                instance = OptionItem.objects.get_or_create(
                     name=obj,
                 )
                 option_list.append(instance)
@@ -338,6 +336,7 @@ class PostRoom(models.Model):
                 )
             except ObjectDoesNotExist:
                 pass
+
             try:
                 for obj in management_list[1:]:
                     maintenance.controlPoint.add(obj)
@@ -346,6 +345,7 @@ class PostRoom(models.Model):
 
             for obj in security_list:
                 post.securitySafety.add(obj)
+
             try:
                 for obj in option_list:
                     post.option.add(obj)
@@ -402,3 +402,4 @@ class PostLike(models.Model):
         on_delete=models.CASCADE,
     )
     created_at = models.DateTimeField(auto_now_add=True, )
+

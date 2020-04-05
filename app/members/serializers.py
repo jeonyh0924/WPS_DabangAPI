@@ -34,13 +34,3 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'pk',
             'introduce',
         ]
-
-
-class SignUpViewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = [
-            'username',
-            'email',
-            'password',
-        ]

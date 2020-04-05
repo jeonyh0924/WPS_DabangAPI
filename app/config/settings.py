@@ -14,7 +14,6 @@ import json
 import os
 from datetime import timedelta
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -37,7 +36,6 @@ SECRET_KEY = SECRETS['SECRET_KEY']
 FACEBOOK_APP_ID = SECRETS["FACEBOOK_APP_ID"]
 FACEBOOK_APP_SECRET = SECRETS["FACEBOOK_APP_SECRET"]
 KAKAO_APP_ID = SECRETS['KAKAO_APP_ID']
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -120,7 +118,7 @@ JWT_AUTH = {
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
     'JWT_ALLOW_REFRESH': False,
-       'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30),
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
     'JWT_AUTH_COOKIE': None,
 }
@@ -155,7 +153,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
