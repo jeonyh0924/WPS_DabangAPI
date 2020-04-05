@@ -1,7 +1,8 @@
 import requests
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.settings import api_settings
