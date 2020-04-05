@@ -15,7 +15,12 @@ JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 """
- 소셜로그인 라이브러리 사용할 예정
+ * 변경사항
+    - members/views.py 에 작성한 API 코드를 apis.py 파일로 코드의 목적에 맞게 옮김.
+ 
+ * todo list
+    - 소셜로그인 라이브러리로 : Django rest social oauth2
+
 """
 
 
